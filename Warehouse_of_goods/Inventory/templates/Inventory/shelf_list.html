@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	{% load bootstrap5 %}
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+    <title>Список стеллажей</title>
+</head>
+<body>
+    <h1>Список стеллажей</h1>
+    <ul>
+        {% for shelf in shelves %}
+            <li>Стеллаж номер {{ shelf.number }} в помещении {{ shelf.room.name }}. Количество мест: {{ shelf.storage_capacity }}, Высота: {{ shelf.height }}, Ширина: {{ shelf.width }}, Длина: {{ shelf.length }}. Максимальная нагрузка: {{ shelf.max_load }}.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

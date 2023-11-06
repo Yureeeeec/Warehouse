@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	{% load bootstrap5 %}
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+    <title>Список помещений</title>
+</head>
+<body>
+    <h1>Список помещений</h1>
+    <ul>
+        {% for room in rooms %}
+            <li>{{ room.name }} - {{ room.volume }} м³</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

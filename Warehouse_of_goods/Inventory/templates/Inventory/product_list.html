@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	{% load bootstrap5 %}
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+    <title>Список товаров</title>
+</head>
+<body>
+    <h1>Список товаров</h1>
+    <ul>
+        {% for product in products %}
+            <li>Товар {{ product.id }}: Высота: {{ product.height }}, Ширина: {{ product.width }}, Длина: {{ product.length }}, Вес: {{ product.weight }}, Дата поступления: {{ product.arrival_date }}, Номер договора: {{ product.contract_number }}, Клиент: {{ product.client.name }}, Дата окончания договора: {{ product.contract_end_date }}, Стеллаж: {{ product.shelf.number }}, Позиция: {{ product.position }}.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
