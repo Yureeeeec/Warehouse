@@ -2,17 +2,126 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-	{% load bootstrap5 %}
+    {% load bootstrap5 %}
 	{% bootstrap_javascript %}
 	{% bootstrap_css %}
-    <title>Список клиентов</title>
+    <title>Список</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <h1>Список клиентов</h1>
-    <ul>
-        {% for client in clients %}
-            <li>{{ client.name }} - {{ client.bank_details }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя клиента</th>
+                <th>Банковские реквизиты</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.bank_details }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Список товаров</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Высота</th>
+                <th>Ширина</th>
+                <th>Длина</th>
+                <th>Вес</th>
+                <th>Дата поступления</th>
+                <th>Номер договора</th>
+                <th>Клиент</th>
+                <th>Дата окончания договора</th>
+                <th>Стеллаж</th>
+                <th>Позиция</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>Товар {{ product.id }}</td>
+                    <td>{{ product.height }}</td>
+                    <td>{{ product.width }}</td>
+                    <td>{{ product.length }}</td>
+                    <td>{{ product.weight }}</td>
+                    <td>{{ product.arrival_date }}</td>
+                    <td>{{ product.contract_number }}</td>
+                    <td>{{ product.client.name }}</td>
+                    <td>{{ product.contract_end_date }}</td>
+                    <td>{{ product.shelf.number }}</td>
+                    <td>{{ product.position }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Список помещений</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Название помещения</th>
+                <th>Объем</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.name }}</td>
+                    <td>{{ room.volume }} м³</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Список стеллажей</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер стеллажа</th>
+                <th>Помещение</th>
+                <th>Вместимость</th>
+                <th>Высота</th>
+                <th>Ширина</th>
+                <th>Длина</th>
+                <th>Максимальная нагрузка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shelf in shelves %}
+                <tr>
+                    <td>{{ shelf.number }}</td>
+                    <td>{{ shelf.room.name }}</td>
+                    <td>{{ shelf.storage_capacity }}</td>
+                    <td>{{ shelf.height }}</td>
+                    <td>{{ shelf.width }}</td>
+                    <td>{{ shelf.length }}</td>
+                    <td>{{ shelf.max_load }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
