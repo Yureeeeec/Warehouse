@@ -5,14 +5,13 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ('name', 'volume')
 
 class ShelfAdmin(admin.ModelAdmin):
-    list_display = ('number', 'room', 'storage_capacity', 'height', 'width', 'length', 'max_load')
-    list_filter = ('room',)
+    list_display = ('number', 'room', 'storage_capacity', 'height', 'width', 'length', 'max_load', 'display_products')
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('name', 'bank_details')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('height', 'width', 'length', 'weight', 'arrival_date', 'contract_number', 'client', 'contract_end_date', 'shelf', 'position')
+    list_display = ('name','height', 'width', 'length', 'weight', 'arrival_date', 'contract_number', 'client', 'contract_end_date', 'shelf', 'position')
     list_filter = ('client', 'shelf__room')
 
 admin.site.register(Room, RoomAdmin)

@@ -12,6 +12,7 @@ class Room(models.Model):
         verbose_name = 'Помещение'
 
 class Shelf(models.Model):
+    products = models.ManyToManyField("Product", related_name='shelves', blank=True, verbose_name='Список товаров, размещенных на стеллаже')
     number = models.IntegerField(verbose_name='Номер')
     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name='Помещение')
     storage_capacity = models.IntegerField(verbose_name='Количество мест для хранения')
@@ -23,6 +24,12 @@ class Shelf(models.Model):
     def __str__(self):
         return f"Shelf {self.number}"
     
+    def display_products(self):
+        products = Product.objects.filter(shelf=self, position=self.number)
+        return ', '.join([product.name for product in products])
+
+    display_products.short_description = 'Список товаров, размещенных на стеллаже'
+
     class Meta:
         verbose_name_plural = 'Стеллажи'
         verbose_name = 'Стеллаж'
@@ -39,6 +46,7 @@ class Client(models.Model):
         verbose_name = 'Клиента'
 
 class Product(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Название товара')
     height = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Высота')
     width = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ширина')
     length = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Длина')

@@ -46,7 +46,7 @@
     <table>
         <thead>
             <tr>
-                <th>Товар</th>
+                <th>Название товара</th>
                 <th>Высота</th>
                 <th>Ширина</th>
                 <th>Длина</th>
@@ -62,7 +62,7 @@
         <tbody>
             {% for product in products %}
                 <tr>
-                    <td>Товар {{ product.id }}</td>
+                    <td>{{ product.name}}</td>
                     <td>{{ product.height }}</td>
                     <td>{{ product.width }}</td>
                     <td>{{ product.length }}</td>
@@ -107,6 +107,7 @@
                 <th>Ширина</th>
                 <th>Длина</th>
                 <th>Максимальная нагрузка</th>
+                <th>Список товаров, размещенных на стеллаже</th>
             </tr>
         </thead>
         <tbody>
@@ -119,6 +120,7 @@
                     <td>{{ shelf.width }}</td>
                     <td>{{ shelf.length }}</td>
                     <td>{{ shelf.max_load }}</td>
+                    <td>{{ shelf.display_products }}</td>
                 </tr>
             {% endfor %}
         </tbody>
